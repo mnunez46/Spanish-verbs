@@ -105,7 +105,7 @@ if st.button("✨ Generate New Exercise"):
         # This is the new way to call the AI
         # Existing line where you get the response:
         response = client.models.generate_content(
-            model='gemini-2.5-flash-lite',
+            model='gemini-2.0-flash-lite',
             contents=prompt
         )
 
