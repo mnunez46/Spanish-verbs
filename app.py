@@ -69,14 +69,20 @@ with st.sidebar:
 
 # --- AI LOGIC ---
 if st.button("✨ Generate New Exercise"):
-    # Clear the old answer first!
+    # 1. Clear the old answer
     if "user_answer_field" in st.session_state:
         st.session_state["user_answer_field"] = ""
+
+    # 2. CREATE THE PROMPT (Add this line!)
+    prompt = f"Generate a Spanish verb exercise for the verb '{selected_verb}' in the {selected_tense} tense."
+
+    # 3. Now try to talk to Google
     try:
         response = client.models.generate_content(
             model='gemini-1.5-flash',
             contents=prompt
         )
+        # ... rest of your code ...
     except Exception as e:
         st.error(f"Google API Error: {e}")
         st.stop()
