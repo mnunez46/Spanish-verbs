@@ -7,7 +7,31 @@ if 'total_cost' not in st.session_state:
     st.session_state.total_cost = 0.0
 if 'exercise_count' not in st.session_state:
     st.session_state.exercise_count = 0
+# Simple Password Protection
+def check_password():
+    if "password_correct" not in st.session_state:
+        # First run, show the input for password
+        st.text_input("Enter Student Access Code", type="password", on_change=password_entered, key="password")
+        return False
+    elif not st.session_state["password_correct"]:
+        # Password was wrong, show input again
+        st.text_input("Enter Student Access Code", type="password", on_change=password_entered, key="password")
+        st.error("😕 Access code incorrect.")
+        return False
+    else:
+        # Password was correct
+        return True
 
+def password_entered():
+    # Change 'Spanish101' to whatever password you want to give students
+    if st.session_state["password"] == "Buena Vista":
+        st.session_state["password_correct"] = True
+        del st.session_state["password"]  # don't store password
+    else:
+        st.session_state["password_correct"] = False
+
+if not check_password():
+    st.stop()  # Stop right here if password isn't correct
 # --- CONFIG & AI SETUP ---
 st.set_page_config(page_title="Spanish Verb Master", layout="wide")
 
