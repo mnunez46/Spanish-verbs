@@ -37,8 +37,6 @@ if not check_password():
 # --- CONFIG & AI SETUP ---
 st.set_page_config(page_title="Spanish Verb Master", layout="wide")
 
-# PASTE YOUR KEY HERE
-API_KEY = "AIzaSyAxD8OW8FlXvv8Y3neC1H1aLuZgEbkaZys"
 
 client = genai.Client(
     api_key=st.secrets["API_KEY"]
