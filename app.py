@@ -1,7 +1,7 @@
 import streamlit as st
 import random
 from google import genai
-from google.genai import types
+from google.genai import types  # <--- MAKE SURE THIS LINE IS PRESENT
 # Initialize our usage trackers
 if 'total_cost' not in st.session_state:
     st.session_state.total_cost = 0.0
@@ -39,8 +39,8 @@ st.set_page_config(page_title="Spanish Verb Master", layout="wide")
 API_KEY = "AIzaSyAxD8OW8FlXvv8Y3neC1H1aLuZgEbkaZys"
 
 client = genai.Client(
-api_key=API_KEY,
-http_options=types.HttpOptions(api_version='v1')
+    api_key=st.secrets["API_KEY"],
+    http_options=types.HttpOptions(api_version='v1')
 )
 
 # Custom CSS for Senior-Friendly UI
