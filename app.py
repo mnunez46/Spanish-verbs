@@ -69,14 +69,17 @@ with st.sidebar:
 
 # --- AI LOGIC ---
 if st.button("✨ Generate New Exercise"):
-    # 1. Clear the old answer
-    if "user_answer_field" in st.session_state:
-        st.session_state["user_answer_field"] = ""
+    # Safety Check: Did they pick at least one tense?
+    if not selected_tenses:
+        st.warning("Please select at least one tense above! ⬆️")
+        st.stop()
 
-    # 2. CREATE THE PROMPT (Add this line!)
-    prompt = f"Generate a Spanish verb exercise for the verb '{selected_verb}' in the {selected_tense} tense."
+    # Convert the list [Present, Past] into a string "Present, Past"
+    tenses_string = ", ".join(selected_tenses)
 
-    # 3. Now try to talk to Google
+    # Use 'tenses_string' instead of 'selected_tense'
+    prompt = f"Generate a Spanish verb exercise for the verb '{selected_verb}' using these tenses: {tenses_string}."
+
     try:
         response = client.models.generate_content(
             model='gemini-1.5-flash',
