@@ -72,6 +72,14 @@ if st.button("✨ Generate New Exercise"):
     # Clear the old answer first!
     if "user_answer_field" in st.session_state:
         st.session_state["user_answer_field"] = ""
+    try:
+    response = client.models.generate_content(
+        model='gemini-1.5-flash',
+        contents=prompt
+    )
+except Exception as e:
+    st.error(f"Google API Error: {e}")
+    st.stop()
     
     # ... then your AI logic continues below ...
     if not selected_tenses:
