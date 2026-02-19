@@ -66,7 +66,8 @@ with st.sidebar:
         "Presente de Subjuntivo": "hable", "Condicional": "hablaría"
     }
     selected_tenses = [t for t, ex in tenses.items() if st.checkbox(f"{t} ({ex})")]
-
+# This creates the variable 'selected_verb'
+    selected_verb = st.text_input("Enter a Spanish verb (e.g., Hablar):", value="Hablar")
 # --- AI LOGIC ---
 if st.button("✨ Generate New Exercise"):
     # Safety Check: Did they pick at least one tense?
