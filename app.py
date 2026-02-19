@@ -38,9 +38,7 @@ st.set_page_config(page_title="Spanish Verb Master", layout="wide")
 # PASTE YOUR KEY HERE
 API_KEY = "AIzaSyAxD8OW8FlXvv8Y3neC1H1aLuZgEbkaZys"
 
-client = genai.Client(
-    api_key=st.secrets["API_KEY"],
-    http_options=types.HttpOptions(api_version='v1')
+client = genai.Client(api_key=st.secrets["API_KEY"])
 )
 
 # Custom CSS for Senior-Friendly UI
@@ -105,7 +103,7 @@ if st.button("✨ Generate New Exercise"):
         # This is the new way to call the AI
         # Existing line where you get the response:
         response = client.models.generate_content(
-            model='gemini-2.0-flash',
+            model='gemini-1.5-flash',
             contents=prompt
         )
 
