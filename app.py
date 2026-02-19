@@ -3,10 +3,7 @@ import random
 from google import genai
 from google.genai import types# <--- MAKE SURE THIS LINE IS PRESENT
 
-client = genai.Client(
-    api_key=st.secrets["API_KEY"],
-    http_options={'api_version': 'v1'}
-)
+client = genai.Client(api_key=st.secrets["API_KEY"])
 # Initialize our usage trackers
 if 'total_cost' not in st.session_state:
     st.session_state.total_cost = 0.0
@@ -128,7 +125,7 @@ if st.button("✨ Generate New Exercise"):
         # This is the new way to call the AI
         # Existing line where you get the response:
         response = client.models.generate_content(
-            model='gemini-1.5-flash',
+            model='gemini-2.0-flash',
             contents=prompt
         )
 
